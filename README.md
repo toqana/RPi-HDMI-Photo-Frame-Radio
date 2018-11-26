@@ -109,18 +109,20 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Edit vlc to allow execution as root with "sudo bless /usr/bin/vlc". Search for the text string "geteuid" and repalce with the text string "getppid:, save file, and exit (https://askubuntu.com/questions/413542/how-to-use-vlc-with-sudo-privileges).
 
-1. Pull the repository from GitHub to your RPi "/home/pi" directory as user pi:
+1. Pull the repository from GitHub to your RPi "/home/pi" home directory as user pi:
     ```
     cd ~
-    git clone https://github.com
-    cd SDR
-    cp -rf . ..
-    cd ..
-    rm -rf ./SDR
+    git clone https://github.com/ConferVideo/RPi-HDMI-Photo-Frame-Radio.git
     git pull
     ```
 
+1. Copy the file "sdr_cron_reboot" to the /etc/cron.d folder with the command:
+    
+    "sudo cp /home/pi/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot".
+
 1. Next step:
+
+
 
 
 
