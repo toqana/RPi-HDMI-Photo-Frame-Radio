@@ -46,13 +46,12 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Install the following packages using "sudo apt-get install package-name":
 
-```
-libffi-dev
-rtl-sdr
-libsdl2-2.0
-libsdl2-dev
-unclutter
-```
+  1. libffi-dev
+  1. rtl-sdr
+  1. libsdl2-2.0
+  1. libsdl2-dev
+  1. unclutter
+
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
