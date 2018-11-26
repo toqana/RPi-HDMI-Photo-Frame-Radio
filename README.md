@@ -112,7 +112,16 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 1. Pull the repository from GitHub to your RPi "/home/pi" directory as user pi:
     ```
     cd ~
-    get pull 
+    git clone https://github.com
+    cd SDR
+    cp -rf . ..
+    cd ..
+    rm -rf ./SDR
+    git pull
+    ```
+
+1. Next step:
+
 
 
 
