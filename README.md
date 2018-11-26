@@ -2,7 +2,7 @@
 
 ### Description
 
-This is a verified and fully functional engineering software and hardware prototype of a Raspberry Pi 3 Model B+ Full HD (1920x1080) photo frame with both Software Defined Radio ("SDR") and Internet Radio audio. The photo carousel and audio play through the HDMI port.
+This is a verified and fully functional engineering software and hardware prototype of a Raspberry Pi 3 Model B+ Full HD (1920x1080) photo frame with both Software Defined Radio ("SDR") and Internet Radio audio. The photo carousel and audio play through the HDMI port. The 1920x1080 HDMI signal has been tested on both Full HD (1920x1080) and Ultra HD (3840x2160) Samsung televisions.
 
 As an engineering prototype, there are important and necessary functions that need to be added to make this a finished consumer product, such as security hardening and adding a consumer friendly control panel.
 
