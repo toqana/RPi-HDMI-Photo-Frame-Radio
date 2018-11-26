@@ -26,7 +26,7 @@ The Python Flask webserver uses AJAX to receive commands from one or more contro
 
 If you are new to the Raspberry Pi, please refer to https://www.raspberrypi.org/.
 
-If you do not have a RPi NOOBS microSDHC card, a simple way to install Raspbian Stretch on a microSDHC card is to download "RASPBIAN STRETCH WITH DESKTOP AND RECOMMENDED SOFTWARE" from https://downloads.raspberrypi.org/raspbian_full_latest and to use Rufus (https://rufus.ie/en_IE.html) to create a bootable uSD image on a Windows 7+ PC. We typically use a 32 GB microSDHC card to allow room for multiple versions of an application and lots of data.
+If you do not have a RPi NOOBS microSDHC card, a simple way to install Raspbian Stretch on a microSDHC card is to download "RASPBIAN STRETCH WITH DESKTOP AND RECOMMENDED SOFTWARE" from https://downloads.raspberrypi.org/raspbian_full_latest and to use Rufus (https://rufus.ie/en_IE.html) to create a bootable microSDHC image on a Windows 7+ PC. OTTStreamingVideo.net typically uses 32 GB microSDHC cards to allow room for multiple development versions of an application and lots of data.
 
 Our developmemt platform is Ubuntu based, so we often use Ubuntu Image Writer (https://askubuntu.com/questions/179437/how-can-i-burn-a-raspberry-pi-image-to-sd-card-from-ubuntu) to create microSDHC cards and Geany (https://www.geany.org/Download/ThirdPartyPackages) for code editing.
 
@@ -42,7 +42,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Verify that pip is installed with version is 18.1 or higher with "pip -V", If not, upgrade pip with "pip install --upgrade pip".
 
-1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip".
+1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip". If you decide not to use port 80 then it is not necessary to use "sudo pip install package-name".
 
 1. Install the following packages using "sudo apt-get install package-name":
     ```
@@ -56,7 +56,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     vlc
     bless
     ```
-
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
@@ -110,7 +109,10 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Edit vlc to allow execution as root with "sudo bless /usr/bin/vlc". Search for the text string "geteuid" and repalce with the text string "getppid:, save file, and exit (https://askubuntu.com/questions/413542/how-to-use-vlc-with-sudo-privileges).
 
-
+1. Pull the repository from GitHub to your RPi "/home/pi" directory as user pi:
+    ```
+    cd ~
+    get pull 
 
 
 
