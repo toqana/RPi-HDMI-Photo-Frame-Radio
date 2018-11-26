@@ -6,6 +6,10 @@ This is a verified and fully functional engineering software and hardware protot
 
 As an engineering prototype, there are important and necessary functions that need to be added to make this a finished consumer product, such as security hardening and adding a consumer friendly control panel.
 
+This code is provided without any warranty or guarantee of any kind. The Python code is mostly original, with some code snippets based on examples from public sources (e.g. SDR, VLC, and SDL2 commands). To the best of our knowlege, the bash, Python, HTML, JavaScript, and CSS code provided in this repository is available for re-use subject to the Gnu Software License.
+
+Please also refer to the Raspbian Operating System and Python software licenses.
+
 The SDR Radio is based on the "NooElec RTL-SDR, FM+DAB, DVB-T USB Stick Set with RTL2832U & R820T" that is available from Amazon for $19.95.
 
 The RPi runs Raspbian Stretch, and the application is written in Python 2.7. The web based user control panel is implemented using the Python Flask webserver running on port 80, which requires the root user. If you do not wish to run the Python application as root, then please change the Flask webserver port.
