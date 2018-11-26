@@ -76,7 +76,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen with the command "nano /home/pi/.config/lxsession/LXDE-pi/autostart";
 
-`
+
       from:
 
       @lxpanel --profile LXDE-pi
@@ -90,13 +90,13 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
       @pcmanfm --desktop --profile LXDE-pi
       @xscreensaver -no-splash
       @point-rpi
-      #
-      # for carousel and kiosk, move cursor to center and hide       
-      #
-      # sudo apt-get install unclutter
-      #
+      \#
+      \# for carousel and kiosk, move cursor to center and hide       
+      \#
+      \# sudo apt-get install unclutter
+      \#
       @unclutter -idle 0.1 -root
-`
+
 
 1. Next step:
 
