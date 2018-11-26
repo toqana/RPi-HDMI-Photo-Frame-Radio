@@ -1,6 +1,6 @@
 # Raspberry Pi Full HD HDMI Photo Frame Carousel with SDR Radio and Internet Radio
 
-# Description
+### Description
 
 This is a verified and fully functional engineering software and hardware prototype of a Raspberry Pi 3 Model B+ Full HD (1920x1080) photo frame with both Software Defined Radio ("SDR") and Internet Radio audio. The photo carousel and audio play through the HDMI port.
 
