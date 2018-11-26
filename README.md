@@ -84,7 +84,7 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="066
 
 nano /home/pi/.config/lxsession/LXDE-pi/autostart
 
-"""
+```
 from:
 
 @lxpanel --profile LXDE-pi
@@ -104,7 +104,8 @@ to:
 # sudo apt-get install unclutter
 #
 @unclutter -idle 0.1 -root
-"""
+```
+
 
 
 
