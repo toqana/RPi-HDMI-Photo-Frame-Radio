@@ -54,8 +54,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
-
-
 1. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
    1. Flask
    1. gevent
@@ -67,41 +65,37 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Add the lines shown below for SDR support with the command "sudo nano 99-sdr.rules":
 
-      /# Realtek Semiconductor Corp. RTL2838 DVB-T 
+      \# Realtek Semiconductor Corp. RTL2838 DVB-T 
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
 
 1. Reboot with "sudo reboot".
 
 1. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
 
-
 1. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
 
-1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen:
+1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen with the command "nano /home/pi/.config/lxsession/LXDE-pi/autostart";
 
-nano /home/pi/.config/lxsession/LXDE-pi/autostart
+      from:
 
-```
-from:
+      \@lxpanel --profile LXDE-pi
+      \@pcmanfm --desktop --profile LXDE-pi
+      \@xscreensaver -no-splash
+      \@point-rpi
 
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-@xscreensaver -no-splash
-@point-rpi
+      to:
 
-to:
+      \@lxpanel --profile LXDE-pi
+      \@pcmanfm --desktop --profile LXDE-pi
+      \@xscreensaver -no-splash
+      \@point-rpi
+      \#
+      \# for carousel and kiosk, move cursor to center and hide       
+      \#
+      \# sudo apt-get install unclutter
+      \#
+      \@unclutter -idle 0.1 -root
 
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-@xscreensaver -no-splash
-@point-rpi
-#
-# for carousel and kiosk, move cursor to center and hide       
-#
-# sudo apt-get install unclutter
-#
-@unclutter -idle 0.1 -root
-```
 
 
 
