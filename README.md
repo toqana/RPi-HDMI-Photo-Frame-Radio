@@ -34,17 +34,17 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Change the password for user "pi" using the desktop Raspberry Pi Configuration Tools (https://www.raspberrypi.org/magpi/raspberry-pi-configuration-tool/) or the terminal based "sudo raspi-config" command (https://www.raspberrypi.org/documentation/configuration/raspi-config.md).
 
-2. Update Raspbian with "sudo apt-get update && sudo apt-get upgrade".
+1. Update Raspbian with "sudo apt-get update && sudo apt-get upgrade".
 
-3. Update your RPi firmware with "sudo rpi-update".
+1. Update your RPi firmware with "sudo rpi-update".
 
-4. Verify that Python 2.7 is the default version with "python -V".
+1. Verify that Python 2.7 is the default version with "python -V".
 
-5. Verify that pip is installed with version is 18.1 or higher with "pip -V", If not, upgrade pip with "pip install --upgrade pip".
+1. Verify that pip is installed with version is 18.1 or higher with "pip -V", If not, upgrade pip with "pip install --upgrade pip".
 
-6. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip".
+1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip".
 
-7a. Install the following packages using "sudo apt-get install package-name":
+1. Install the following packages using "sudo apt-get install package-name":
 
 ```
 libffi-dev
@@ -54,11 +54,11 @@ libsdl2-dev
 unclutter
 ```
 
-7b. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
+1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
 
 
-8a. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
+1. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
 
 ```
 Flask
@@ -68,9 +68,9 @@ eventlet
 python-sdl2
 ```
 
-8b. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
+1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
-9a. Add the lines shown below for SDR support:
+1. Add the lines shown below for SDR support:
 
 sudo nano 99-sdr.rules
 ```
@@ -78,14 +78,14 @@ sudo nano 99-sdr.rules
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
 ```
 
-9b. Reboot with "sudo reboot".
+1. Reboot with "sudo reboot".
 
-10. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
+1. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
 
 
-11. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
+1. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
 
-12. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen:
+1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen:
 
 nano /home/pi/.config/lxsession/LXDE-pi/autostart
 
