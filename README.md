@@ -57,14 +57,11 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 
 1. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
-
-```
-Flask
-gevent
-flask_socketio
-eventlet
-python-sdl2
-```
+   1. Flask
+   1. gevent
+   1. flask_socketio
+   1. eventlet
+   1. python-sdl2
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
