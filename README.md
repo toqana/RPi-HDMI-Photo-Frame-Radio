@@ -46,11 +46,13 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 7a. Install the following packages using "sudo apt-get install package-name":
 
+```
 libffi-dev
 rtl-sdr
 libsdl2-2.0
 libsdl2-dev
 unclutter
+```
 
 7b. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
@@ -58,20 +60,23 @@ unclutter
 
 8a. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
 
+```
 Flask
 gevent
 flask_socketio
 eventlet
 python-sdl2
+```
 
 8b. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
 9a. Add the lines shown below for SDR support:
 
 sudo nano 99-sdr.rules
-
+```
 # Realtek Semiconductor Corp. RTL2838 DVB-T 
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
+```
 
 9b. Reboot with "sudo reboot".
 
