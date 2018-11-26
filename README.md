@@ -45,21 +45,25 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip".
 
 1. Install the following packages using "sudo apt-get install package-name":
-   1. libffi-dev
-   1. rtl-sdr
-   1. libsdl2-2.0
-   1. libsdl2-dev
-   1. unclutter
+    ```
+    libffi-dev
+    rtl-sdr
+    libsdl2-2.0
+    libsdl2-dev
+    unclutter
+    ```
 
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
 1. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
-   1. Flask
-   1. gevent
-   1. flask_socketio
-   1. eventlet
-   1. python-sdl2
+    ```
+    Flask
+    gevent
+    flask_socketio
+    eventlet
+    python-sdl2
+    ```
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
