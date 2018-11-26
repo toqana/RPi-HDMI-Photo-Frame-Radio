@@ -83,7 +83,9 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
 
-1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen with the command "nano /home/pi/.config/lxsession/LXDE-pi/autostart";
+1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen with the command:
+
+    nano /home/pi/.config/lxsession/LXDE-pi/autostart
 
     ```
     from:
@@ -118,12 +120,12 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Copy the file "sdr_cron_reboot" to the /etc/cron.d folder with the command:
     
-    "sudo cp /home/pi/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot".
+    sudo cp /home/pi/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot
+
+1. Test the application with the command:
+
+    ./sdr_cron_reboot.sh
 
 1. Next step:
-
-
-
-
 
 
