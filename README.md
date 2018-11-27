@@ -80,12 +80,14 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     ```
     python
     >>>import gevent
+    (if gevent has been installed no error message will appear)
     
     or
     
     sudo pip install gevent
+    (if gevent has been installed a message will indicate such)
     ```
-    You may need to open a new terminal window on the RPi.
+    You may need to open a new terminal window on the RPi if the installation of gevent appeared to stall.
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
