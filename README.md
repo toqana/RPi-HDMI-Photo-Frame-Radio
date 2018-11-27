@@ -70,7 +70,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then omit "sudo":
    ```
-   sudo pip install Flask flask_socketio eventlet gevent imagesize python-resize-image
+   sudo pip install Flask flask_socketio eventlet imagesize python-resize-image
    ```
 1. Install setuptools, cffi, and gevent. If the installation appears to stall, wait 3 minutes and then verify with the next step.
     ```
