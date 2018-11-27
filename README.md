@@ -124,6 +124,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Test the application with the command:
 
+    cd ~/sdr
     ./sdr_cron_reboot.sh
 
 1. Next step:
