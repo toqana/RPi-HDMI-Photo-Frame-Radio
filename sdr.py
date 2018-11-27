@@ -283,7 +283,7 @@ def carouselFindFiles():
         
         if cmp(inArray, oldArray) != 0:
             
-            command = 'rem -f ./' + displayFolder + '/*'
+            command = 'rm -f ./' + displayFolder + '/*'
             os.popen(command)
             
             i = 1
