@@ -1,1 +1,0 @@
-display image files
