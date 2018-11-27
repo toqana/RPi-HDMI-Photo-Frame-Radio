@@ -40,7 +40,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Update Raspbian with "sudo apt-get update && sudo apt-get upgrade".
 
-1. Update your RPi firmware with "sudo rpi-update".
+1. Update your RPi firmware with "sudo rpi-update", and then reboot with "sudo reboot".
 
 1. Verify that Python 2.7 is the default version with "python -V".
 
