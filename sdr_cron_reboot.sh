@@ -22,7 +22,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/games:/usr/gam
 XDG_RUNTIME_DIR=/run/user/1000
 export DISPLAY=:0.0
 export XAUTHORITY=~/.Xauthority
-cd /home/pi/SDR_GPL
+cd /home/pi/RPi-HDMI-Photo-Frame-Radio
 sudo ./sdr.py &
 #
 # if desired, suppress output

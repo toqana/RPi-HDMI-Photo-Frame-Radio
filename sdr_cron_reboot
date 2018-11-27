@@ -17,6 +17,6 @@
 #
 # /etc/cron.d/sdr_cron_reboot
 #
-# sudo cp /home/pi/SDR_GPL/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot
+# sudo cp /home/pi/RPi-HDMI-Photo-Frame-Radio/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot
 #
-@reboot pi /bin/sleep 5; cd /home/pi/SDR_GPL; ./sdr_cron_reboot.sh
+@reboot pi /bin/sleep 5; cd /home/pi/RPi-HDMI-Photo-Frame-Radio; ./sdr_cron_reboot.sh
