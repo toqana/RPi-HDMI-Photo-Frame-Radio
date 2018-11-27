@@ -46,7 +46,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Install packages using:
     ```
-    sudo apt-get install libffi-dev rtl-sdr
+    sudo apt-get install rtl-sdr
     ```
     
 1. Add the lines shown below for SDR support with the command "sudo nano /etc/udev/rules.d/99-sdr.rules":
@@ -62,8 +62,10 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Install the following packages using:
     ```
-    sudo apt-get install libsdl2-2.0 libsdl2-dev unclutter libjpeg-dev zlib1g-dev vlc bless python-sdl2
+    sudo apt-get install libsdl2-2.0 libsdl2-dev unclutter libjpeg-dev zlib1g-dev vlc bless python-sdl2 libffi-dev
     ```
+1. Reboot with "sudo reboot".
+
 1. Verify that vlc has been installed for user pi with "vlc --version".
 
 1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then omit "sudo":
