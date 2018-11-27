@@ -64,7 +64,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     ```
     sudo apt-get install libsdl2-2.0 libsdl2-dev unclutter libjpeg-dev zlib1g-dev vlc bless python-sdl2 libffi-dev
     ```
-1. Reboot with "sudo reboot".
+1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
 1. Verify that vlc has been installed for user pi with "vlc --version".
 
