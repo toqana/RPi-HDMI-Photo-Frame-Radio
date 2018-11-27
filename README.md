@@ -44,10 +44,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Verify that Python 2.7 is the default version with "python -V".
 
-1. Verify that pip is installed with version is 18.1 or higher with "pip -V", If not, upgrade pip with "pip install --upgrade pip".
-
-1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), it may save time to install python packages with "pip install package-name" and also "sudo pip install package-name". You may also wish to run "sudo pip -V", and, if necessary, 'sudo pip install --upgrade pip". If you decide not to use port 80 then it is not necessary to use "sudo pip install package-name".
-
 1. Install the following packages using "sudo apt-get install package-name":
     ```
     libffi-dev
@@ -63,7 +59,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
-1. Install the following packages using both "pip install package-name" and "sudo pip install package-name":
+1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then use "pip install package-name".
     ```
     Flask
     gevent
