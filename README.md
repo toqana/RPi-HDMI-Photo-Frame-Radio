@@ -64,8 +64,9 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     ```
     sudo apt-get install libsdl2-2.0 libsdl2-dev unclutter libjpeg-dev zlib1g-dev vlc bless
     ```
-    
-1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then use:
+1. Verify that vlc has been installed for user pi with "vlc --version".
+
+1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then omit "sudo":
    ```
    sudo pip install Flask gevent flask_socketio eventlet python-sdl2 imagesize python-resize-image
    ```
