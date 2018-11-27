@@ -49,7 +49,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     libffi-dev
     rtl-sdr
     ```
-
 1. Add the lines shown below for SDR support with the command "sudo nano /etc/udev/rules.d/99-sdr.rules":
     ```
     # Realtek Semiconductor Corp. RTL2838 DVB-T 
@@ -58,7 +57,8 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 1. Reboot with "sudo reboot".
 
 1. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
-1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
+
+1. Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
 1. Install the following packages using "sudo apt-get install package-name":
     ```
