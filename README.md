@@ -32,6 +32,8 @@ OTTStreamingVideo.net's developmemt platform is Ubuntu based, so we often use Ub
 
 When you first power up your RPi with a new Raspbian Stretch image, the following steps may be helpful:
 
+1. Connect a Full HD (1920x1080) monitor or TV to the HDMI port, in addition to a USB keyboard and mouse (e.g. Logitech K270 wireless keyboard and mouse).
+
 1. Change the password for user "pi" using the desktop Raspberry Pi Configuration Tools (https://www.raspberrypi.org/magpi/raspberry-pi-configuration-tool/) or the terminal based "sudo raspi-config" command (https://www.raspberrypi.org/documentation/configuration/raspi-config.md).
 
 1. Update Raspbian with "sudo apt-get update && sudo apt-get upgrade".
