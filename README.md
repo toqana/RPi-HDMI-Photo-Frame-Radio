@@ -48,6 +48,20 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     ```
     libffi-dev
     rtl-sdr
+    ```
+
+1. Add the lines shown below for SDR support with the command "sudo nano 99-sdr.rules":
+    ```
+    # Realtek Semiconductor Corp. RTL2838 DVB-T 
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
+    ```
+1. Reboot with "sudo reboot".
+
+1. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
+1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
+
+1. Install the following packages using "sudo apt-get install package-name":
+    ```
     libsdl2-2.0
     libsdl2-dev
     unclutter
@@ -56,9 +70,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     vlc
     bless
     ```
-
-1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
-
 1. Since the Python Flask webserver requires root for port 80 (https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux), use "sudo pip install package-name" (this makes the python packages available to all users). If you decide not to use port 80 for the Flask webserver then use "pip install package-name".
     ```
     Flask
@@ -72,15 +83,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
-1. Add the lines shown below for SDR support with the command "sudo nano 99-sdr.rules":
-    ```
-    # Realtek Semiconductor Corp. RTL2838 DVB-T 
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
-    ```
 
-1. Reboot with "sudo reboot".
-
-1. Verify operation of the SDR USB dongle with the commands "lsusb" and "rtl_test" (https://drwxr.org/2017/04/setting-up-rtl-sdr-on-raspberry-pi-3/). See also https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
 
 1. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
 
