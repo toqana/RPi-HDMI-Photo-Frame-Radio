@@ -74,7 +74,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Add the lines shown below for SDR support with the command "sudo nano 99-sdr.rules":
     ```
-    \# Realtek Semiconductor Corp. RTL2838 DVB-T 
+    # Realtek Semiconductor Corp. RTL2838 DVB-T 
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", MODE:="0666", GROUP="adm", SYMLINK+="rtl_sdr"
     ```
 
