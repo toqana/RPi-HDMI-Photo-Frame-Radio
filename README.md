@@ -26,7 +26,7 @@ The Python Flask webserver (http://flask.pocoo.org/) uses AJAX to receive comman
 
 If you are new to the Raspberry Pi, please refer to https://www.raspberrypi.org/.
 
-If you do not have a RPi NOOBS microSDHC card, a simple way to install Raspbian Stretch on a microSDHC card is to download "RASPBIAN STRETCH WITH DESKTOP AND RECOMMENDED SOFTWARE" from https://downloads.raspberrypi.org/raspbian_full_latest and to use Rufus (https://rufus.ie/en_IE.html) to create a bootable microSDHC image on a Windows 7+ PC. OTTStreamingVideo.net typically uses 32 GB microSDHC cards to allow room for multiple development versions of an application and lots of data.
+If you do not have a RPi NOOBS microSDHC card, a simple way to install Raspbian Stretch on a microSDHC card is to download "RASPBIAN STRETCH WITH DESKTOP AND RECOMMENDED SOFTWARE" from https://downloads.raspberrypi.org/raspbian_full_latest (verified with "2018-11-13-raspbian-stretch-full.zip") and to use Rufus (https://rufus.ie/en_IE.html) to create a bootable microSDHC image on a Windows 7+ PC. OTTStreamingVideo.net typically uses 32 GB microSDHC cards to allow room for multiple development versions of an application and lots of data.
 
 OTTStreamingVideo.net's developmemt platform is Ubuntu based, so we often use Ubuntu Image Writer (https://askubuntu.com/questions/179437/how-can-i-burn-a-raspberry-pi-image-to-sd-card-from-ubuntu) to create microSDHC cards and Geany (https://www.geany.org/Download/ThirdPartyPackages) for code editing.
 
