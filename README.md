@@ -91,20 +91,14 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Verify git is installed with "git --version". If not, install git with "sudo apt-get install git".
 
-1. Edit /home/pi/.config/lxsession/LXDE-pi/autostart to remove the cursor from the screen with the command:
+1. Due to a recent change in Raspbian Stretch, confirm if the folder "/home/pi/.config/lxsession" exists with "ls /home/pi/.config/lxsession", and also confirm that the folder "/home/pi/.config/lxsession/LXDE-pi" exists with "ls /home/pi/.config/lxsession/LXDE-pi". If not, make them as shown below:
+    ```
+    mkdir /home/pi/.config/lxsession
+    mkdir /home/pi/.config/lxsession/LXDE-pi
 
-    nano /home/pi/.config/lxsession/LXDE-pi/autostart
+1. In order to remove the cursor from the image carousel screen, run the command "nano /home/pi/.config/lxsession/LXDE-pi/autostart" and change (or insert) the file contents to:
 
     ```
-    from:
-    
-    @lxpanel --profile LXDE-pi
-    @pcmanfm --desktop --profile LXDE-pi
-    @xscreensaver -no-splash
-    @point-rpi
-    
-    to:
-    
     @lxpanel --profile LXDE-pi
     @pcmanfm --desktop --profile LXDE-pi
     @xscreensaver -no-splash
