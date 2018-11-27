@@ -36,7 +36,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Insert the new microSDHC into the RPi and then apply power. After boot, follow the instructions.
 
-1. Change the password for user "pi" using the desktop Raspberry Pi Configuration Tools (https://www.raspberrypi.org/magpi/raspberry-pi-configuration-tool/) or the terminal based "sudo raspi-config" command (https://www.raspberrypi.org/documentation/configuration/raspi-config.md). It may also be convenient to enable SSH in order to use a remote terminal. 
+1. Change the password for user "pi" using the desktop Preferences -> Raspberry Pi Configuration tool (https://www.raspberrypi.org/magpi/raspberry-pi-configuration-tool/) or the terminal based "sudo raspi-config" command (https://www.raspberrypi.org/documentation/configuration/raspi-config.md). It may also be convenient to enable SSH in order to use a remote terminal. 
 
 1. Update Raspbian with "sudo apt-get update && sudo apt-get upgrade".
 
