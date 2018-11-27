@@ -121,7 +121,6 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     ```
     cd ~
     git clone https://github.com/ConferVideo/RPi-HDMI-Photo-Frame-Radio.git
-    git pull
     ```
 
 1. Copy the file "sdr_cron_reboot" to the /etc/cron.d folder with the command:
@@ -130,10 +129,19 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Test the application with the command:
     ```
-    cd ~/sdr
+    cd ~/RPi-HDMI-Photo-Frame-Radio
     ./sdr_cron_reboot.sh
     ```
 
+1. To pull an updated copy of this repository, use the following commands:
+    ```
+    cd ~/RPi-HDMI-Photo-Frame-Radio
+    git pull
+    ```
+
 1. Next step:
+
+    
+    
 
 
