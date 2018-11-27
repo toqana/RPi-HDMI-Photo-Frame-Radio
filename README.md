@@ -32,7 +32,7 @@ OTTStreamingVideo.net's developmemt platform is Ubuntu based, so we often use Ub
 
 When you first power up your RPi with a new Raspbian Stretch image, the following steps may be helpful:
 
-1. Connect a Full HD (1920x1080) monitor with speakers or TV to the HDMI port, in addition to a USB keyboard and mouse (e.g. Logitech K270 wireless keyboard and mouse).
+1. Connect the SDR USB dongle, a Full HD (1920x1080) monitor with speakers or TV to the HDMI port, in addition to a USB keyboard and mouse (e.g. Logitech K270 wireless keyboard and mouse).
 
 1. Insert the new microSDHC into the RPi and then apply power. After boot, follow the instructions.
 
