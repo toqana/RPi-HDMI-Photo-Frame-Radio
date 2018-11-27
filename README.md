@@ -136,16 +136,16 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     cd ~/RPi-HDMI-Photo-Frame-Radio
     ./sdr_cron_reboot.sh
     ```
+1. You can stop the test by using a remote terminal through the command "ssh pi@xxx.xxx.xxx.xxx" with user=pi and password=ThePasswordYouCreatedAbove (default=raspberry), where xxx.xxx.xxx.xxx is the IP address of your RPi that appears on the upper left of the images. You can also obtain your RPi IP address through the "ifconfig" command. To stop the test via SSH use the following commands:
+    ```
+    sudo pkill -9 sdr # this should kill the image display
+    sudo pkill -9 rtl # this should kill the SDR audio
+    sudo pkill -9 vlc # this should kill the vlc audio
+    sudo pkill -9 python # this should kill any remaining python threads
+    ```
 
 1. To pull an updated copy of this repository, use the following commands:
     ```
     cd ~/RPi-HDMI-Photo-Frame-Radio
     git pull
     ```
-
-1. Next step:
-
-    
-    
-
-
