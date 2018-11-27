@@ -72,6 +72,20 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
    ```
    sudo pip install Flask flask_socketio eventlet gevent imagesize python-resize-image
    ```
+1. Install setuptools, cffi, and gevent. If the installation appears to stall, wait 3 minutes and then verify with the next step.
+    ```
+    sudo pip install setuptools cffi gevent
+    ```
+1. If the installation in the prior step appears to stall, wait 3 minutes and then verify with:
+    ```
+    python
+    >>>import gevent
+    
+    or
+    
+    sudo pip install gevent
+    ```
+    You may need to open a new terminal window on the RPi.
 
 1. Reboot with "sudo reboot". Update and upgrade with "sudo apt-get update && sudo apt-get upgrade".
 
