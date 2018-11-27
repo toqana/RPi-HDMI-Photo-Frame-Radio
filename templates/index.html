@@ -1,1 +1,50 @@
+<!-- templates/index.html -->
+<!-- 
 
+Raspberry Pi Full HD HDMI Photo Frame Carousel with SDR Radio and Internet Radio
+Copyright (C) 2018  OTTStreamingVideo.net, Toqana Consulting, LLC (A Nevada Limited Liability Company)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+--> 
+<html>  
+  <head>
+    <title>Radio Carousel</title>
+    <link rel="icon" type="image/png" href="/static/favicon.png" />
+    <link rel="stylesheet" href="/static/style.css">
+    <script type="text/javascript" src="/static/socket.io.min.js"></script>
+    <script type="text/javascript" src="/static/sdr.js"></script>
+  </head>
+  <body>
+    <div id='content'>
+        <div id='label_OTT'>OTTStreamingVideo.net</div>
+        <div id='sockTS'>&nbsp;</div>
+        <div id='url'>{{url}}</div>
+        <div id='sockFreq'>&nbsp;</div>
+        <div id='div_timer'></div>
+    </div>
+    
+    <div id='switches'>
+        <button id='button1' onclick='ajaxFM("102.5M");'>FM 102.5</button>
+        <button id='button2' onclick='ajaxFM("104.5M");'>FM 104.5</button>
+        <button id='button3' onclick='ajaxChannel("KCRW", "89.9");'>KCRW</button>
+        <button id='button4' onclick='ajaxChannel("KUSC", "91.5");'>KUSC</button>
+        <button id='button5' onclick='ajaxChannel("Classic Rock", "Internet");'>Old Guy</button>
+        <button id='button6' onclick='ajaxFire();'>Fire Band</button>
+        <button id='button7' onclick='ajaxAir();'>Air Band</button>
+        <button id='buttonStop' onclick='ajaxStop();'>Stop</button>
+    </div>
+    
+  </body>
+</html>  
