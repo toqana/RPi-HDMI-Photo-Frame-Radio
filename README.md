@@ -129,7 +129,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
 
 1. Copy the file "sdr_cron_reboot" to the /etc/cron.d folder with the command:
     
-    sudo cp /home/pi/sdr/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot
+    sudo cp /home/pi/RPi-HDMI-Photo-Frame-Radio/sdr_cron_reboot /etc/cron.d/sdr_cron_reboot
 
 1. Test the application with the command:
     ```
@@ -143,6 +143,7 @@ When you first power up your RPi with a new Raspbian Stretch image, the followin
     sudo pkill -9 vlc # this should kill the vlc audio
     sudo pkill -9 python # this should kill any remaining python threads
     ```
+1. Test the application from reboot (or power om) with "sudo reboot".
 
 1. To pull an updated copy of this repository, use the following commands:
     ```
