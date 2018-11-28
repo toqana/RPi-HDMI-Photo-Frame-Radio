@@ -241,7 +241,7 @@ def carouselDisplay():
             sprite.position = x + 40, y + 110
             spriterenderer.render(sprite)
 
-            txtLine4        = freqText + '    http://' + ip_html + '/' # update for every image
+            txtLine4        = freqText + '    http://' + findIP() + '/' # update for every image
             sprite          = factory.from_text(txtLine4,fontmanager=ManagerFontRegular)
             sprite.position = x + 40, y + 135
             spriterenderer.render(sprite)
