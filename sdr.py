@@ -142,8 +142,6 @@ def findIP():
 
 ip_html     = findIP()
 
-txtLine4    = freqText + '    http://' + ip_html + '/'
-
 
 #
 # initialize flask with websockets
@@ -160,7 +158,7 @@ socketio = SocketIO(app, async_mode='eventlet')
 
 def carouselDisplay():
     
-    global displayFolder, displayArray, displayDelaySeconds, freqText, x_max, y_max, txtLine1, txtLine2, txtLine3, txtLine4
+    global displayFolder, displayArray, displayDelaySeconds, freqText, x_max, y_max, txtLine1, txtLine2, txtLine3, txtLine4, ip_html
     
     sdl2.ext.init()
 
@@ -220,6 +218,16 @@ def carouselDisplay():
             sprite.position = x, y
             spriterenderer.render(sprite)
             
+            #
+            # compensate for screen display problems
+            #
+            
+            if width > 1800:
+                x = x + 20
+            
+            if height > 1000:
+                y = y + 20
+                
             sprite          = factory.from_text(txtLine1,fontmanager=ManagerFontBold)
             sprite.position = x + 40, y + 60
             spriterenderer.render(sprite)
@@ -233,6 +241,7 @@ def carouselDisplay():
             sprite.position = x + 40, y + 110
             spriterenderer.render(sprite)
 
+            txtLine4        = freqText + '    http://' + ip_html + '/' # update for every image
             sprite          = factory.from_text(txtLine4,fontmanager=ManagerFontRegular)
             sprite.position = x + 40, y + 135
             spriterenderer.render(sprite)
