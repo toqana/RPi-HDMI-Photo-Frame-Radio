@@ -19,13 +19,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 body {
-    overflow:                   hidden;
     margin:                     0;
     padding:                    0;
     background-color:           #FFE4B5;
     color:                      black;
-    width:                      640px;
-    height:                     480px;
     border-style:               solid;
     border-width:               0px;
     border-color:               red;
@@ -42,7 +39,6 @@ a {
 }
 
 #content {
-    width:                      90%;
     padding:                    0;
     padding-top:                60px;
     padding-left:               20px;
@@ -50,8 +46,6 @@ a {
 }
 
 #switches {
-    width:                      90%;
-    height:                     460px;
     margin:                     0;
     padding:                    0;
 }
@@ -91,7 +85,7 @@ a {
 
 button {
     padding:                    0;
-    width:                      180px;
+    width:                      300px;
     height:                     60px;
     font-size:                  32px;
     font-weight:                bold;
