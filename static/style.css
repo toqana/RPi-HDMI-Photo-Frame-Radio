@@ -97,7 +97,14 @@ button {
 
 #buttonStop {
     background-color:           red;
-    font-weight:                bold;
+}
+
+#buttonLoadImages {
+    background-color:           yellow;
+}
+
+#buttonRestart {
+    background-color:           yellow;
 }
 
 

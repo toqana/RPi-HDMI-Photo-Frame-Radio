@@ -69,6 +69,8 @@ txtLine2                    = datetime.datetime.now().strftime("%A %B %d, %Y    
 txtLine3                    = 'Photo by Your Name Here'
 #txtLine4                    = '' # see below findIP()
 
+flagLoadImages              = 0
+
 #
 # initialization
 #
@@ -158,7 +160,7 @@ socketio = SocketIO(app, async_mode='eventlet')
 
 def carouselDisplay():
     
-    global displayFolder, displayArray, displayDelaySeconds, freqText, x_max, y_max, txtLine1, txtLine2, txtLine3, txtLine4, ip_html
+    global displayFolder, displayArray, displayDelaySeconds, freqText, x_max, y_max, txtLine1, txtLine2, txtLine3, txtLine4, ip_html, flagLoadImages
     
     sdl2.ext.init()
 
@@ -189,66 +191,85 @@ def carouselDisplay():
     displayArray.sort()
 
     sprite              = factory.from_image(RESOURCES.get_path(displayArray[0]))
-
+    sprite.position = 0, 0
+    spriterenderer.render(sprite)       
+    
     while True:
         
-        i = 1
+        if flagLoadImages == 0: # do nothing during image load
         
-        for f in displayArray:
+            i = 1
             
-            print
-            print 'display number: ' + str(i) + ' of ' + str(len(displayArray)) + ', file: ' + f
-            print
-        
+            for f in displayArray:
+                
+                if flagLoadImages == 0:
+
+                    print
+                    print 'display number: ' + str(i) + ' of ' + str(len(displayArray)) + ', file: ' + f
+                    print
+                
+                    sprite          = factory.from_color(sdl2.ext.Color(0, 0, 0), size=(1920,1080))
+                    sprite.position = 0, 0
+                    spriterenderer.render(sprite)    
+
+                    #
+                    # center image
+                    #
+                    
+                    width, height = imagesize.get('./' + displayFolder + '/' + f)
+                    print 'width: ' + str(width) + ', height: ' + str(height)
+                    
+                    x = math.trunc((1920 - width) / 2)
+                    y = math.trunc((1080 - height) / 2)
+                                    
+                    sprite          = factory.from_image(RESOURCES.get_path(f))
+                    sprite.position = x, y
+                    spriterenderer.render(sprite)
+                    
+                    #
+                    # compensate for screen display problems
+                    #
+                    
+                    if width > 1800:
+                        x = x + 20
+                    
+                    if height > 1000:
+                        y = y + 20
+                        
+                    sprite          = factory.from_text(txtLine1,fontmanager=ManagerFontBold)
+                    sprite.position = x + 40, y + 60
+                    spriterenderer.render(sprite)
+                            
+                    txtLine2        = datetime.datetime.now().strftime("%A %B %d, %Y    %I:%M %p") # update for every image
+                    sprite          = factory.from_text(txtLine2,fontmanager=ManagerFontRegular)
+                    sprite.position = x + 40, y + 85
+                    spriterenderer.render(sprite)
+
+                    sprite          = factory.from_text(txtLine3,fontmanager=ManagerFontRegular)
+                    sprite.position = x + 40, y + 110
+                    spriterenderer.render(sprite)
+
+                    txtLine4        = freqText + '    http://' + findIP() + '/' # update for every image
+                    sprite          = factory.from_text(txtLine4,fontmanager=ManagerFontRegular)
+                    sprite.position = x + 40, y + 135
+                    spriterenderer.render(sprite)
+                          
+                    time.sleep(displayDelaySeconds)
+                    
+                    i += 1
+                
+        else:
+
             sprite          = factory.from_color(sdl2.ext.Color(0, 0, 0), size=(1920,1080))
             sprite.position = 0, 0
-            spriterenderer.render(sprite)    
-
-            #
-            # center image
-            #
-            
-            width, height = imagesize.get('./' + displayFolder + '/' + f)
-            print 'width: ' + str(width) + ', height: ' + str(height)
-            
-            x = math.trunc((1920 - width) / 2)
-            y = math.trunc((1080 - height) / 2)
-                            
-            sprite          = factory.from_image(RESOURCES.get_path(f))
-            sprite.position = x, y
             spriterenderer.render(sprite)
             
-            #
-            # compensate for screen display problems
-            #
-            
-            if width > 1800:
-                x = x + 20
-            
-            if height > 1000:
-                y = y + 20
-                
-            sprite          = factory.from_text(txtLine1,fontmanager=ManagerFontBold)
-            sprite.position = x + 40, y + 60
-            spriterenderer.render(sprite)
-                    
-            txtLine2        = datetime.datetime.now().strftime("%A %B %d, %Y    %I:%M %p") # update for every image
-            sprite          = factory.from_text(txtLine2,fontmanager=ManagerFontRegular)
-            sprite.position = x + 40, y + 85
-            spriterenderer.render(sprite)
-
-            sprite          = factory.from_text(txtLine3,fontmanager=ManagerFontRegular)
-            sprite.position = x + 40, y + 110
-            spriterenderer.render(sprite)
-
-            txtLine4        = freqText + '    http://' + findIP() + '/' # update for every image
-            sprite          = factory.from_text(txtLine4,fontmanager=ManagerFontRegular)
-            sprite.position = x + 40, y + 135
-            spriterenderer.render(sprite)
-                  
-            time.sleep(displayDelaySeconds)
-            
-            i += 1
+            ManagerFontLoad = sdl2.ext.FontManager(font_path = fontPathBold, size = 32, color = (255, 255, 255))          # white
+            sprite          = factory.from_text('Press "Restart" button when image loading is complete.',fontmanager=ManagerFontLoad)
+            sprite.position = 350, 500
+            spriterenderer.render(sprite)            
+                          
+            time.sleep(60) # do nothing during image load
             
     processor = sdl2.ext.TestEventProcessor()
     processor.run(window)
@@ -262,169 +283,174 @@ def carouselDisplay():
 
 def carouselFindFiles():
     
-    global inFolder, inArray, displayFolder, displayArray, inRefreshSeconds, x_max, y_max, oldArray, thread_carouselDisplay
+    global inFolder, inArray, displayFolder, displayArray, inRefreshSeconds, x_max, y_max, oldArray, thread_carouselDisplay, flagLoadImages
     
     while True:
         
-        inArray     = os.listdir(inFolder)
-        print 'inArray before sort: ' + str(inArray)
-        print 'len(inArray) before sort: ' + str(len(inArray))
-                
-        inArray.sort()
-        print 'inArray after sort: ' + str(inArray)
-        print 'len(inArray) after sort: ' + str(len(inArray))
-
-        oldArray     = os.listdir(displayFolder)
-        print 'oldArray before sort: ' + str(oldArray)
-        print 'len(oldArray) before sort: ' + str(len(oldArray))
-                
-        oldArray.sort()
-        print 'oldArray after sort: ' + str(oldArray)
-        print 'len(oldArray) after sort: ' + str(len(oldArray))
-                
-        #
-        # if filenames in inFolder are not equal to filenames in displayFolder
-        #
-        #   delete all files in displayFolder
-        #
-        #   copy resized (if necessary) files to displayFolder
-        #
+        if flagLoadImages == 0:
         
-        if cmp(inArray, oldArray) != 0:
-            
-            command = 'rm -f ./' + displayFolder + '/*'
-            os.popen(command)
-            
-            i = 1
-                
-            for f in inArray:
-                
-                #
-                # resize image if necessary
-                #
-            
-                print
-                print 'resize number: ' + str(i) + ' of ' + str(len(inArray)) + ', file: ' + f
-                print
-                
-                i += 1
-            
-                inFile          = './' + inFolder + '/' + f
-                print 'inFile: ' + inFile
-                
-                displayFile     = './' + displayFolder + '/' + f
-                print 'displayFile: ' + displayFile 
-                
-                width, height = imagesize.get(inFile)
-                print 'inFolder: ' + f + ', width: ' + str(width) + ', height: ' + str(height)
-                print 'inFolder: ' + f + ', x_max: ' + str(x_max) + ', y_max: ' + str(y_max)
-                
-                
-                if width <= x_max and height <= y_max: # no resize require, just copy file
-                        
-                    shutil.copyfile( inFile, displayFile )
-                    print 'width <= x_max and height <= y_max: no resize require, just copy file'
-                
-                elif width > x_max and height <= y_max:
+            inArray     = os.listdir(inFolder)
+            print 'inArray before sort: ' + str(inArray)
+            print 'len(inArray) before sort: ' + str(len(inArray))
                     
-                    new_x   = x_max
-                    new_y   = math.trunc((float(x_max) / width) * height)
-                    
-                    print 'resize width > x_max && height <= y_max: ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
-                    
-                    with open(inFile, 'r+b') as inFile:
-                        
-                        with Image.open(inFile) as image:
-                            
-                            cover = resizeimage.resize_cover(image, [new_x, new_y])
-                            cover.save(displayFile, image.format)
-                    
-                elif width <= x_max and height > y_max:
+            inArray.sort()
+            print 'inArray after sort: ' + str(inArray)
+            print 'len(inArray) after sort: ' + str(len(inArray))
 
-                    new_x   = math.trunc((float(y_max) / height) * height)
-                    new_y   = y_max
+            oldArray     = os.listdir(displayFolder)
+            print 'oldArray before sort: ' + str(oldArray)
+            print 'len(oldArray) before sort: ' + str(len(oldArray))
                     
-                    print 'resize width <= x_max && height > y_max: ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
+            oldArray.sort()
+            print 'oldArray after sort: ' + str(oldArray)
+            print 'len(oldArray) after sort: ' + str(len(oldArray))
                     
-                    with open(inFile, 'r+b') as inFile:
-                        
-                        with Image.open(inFile) as image:
-                            
-                            cover = resizeimage.resize_cover(image, [new_x, new_y])
-                            cover.save(displayFile, image.format)
-
-                elif width > x_max and height > y_max:
-                    
-                    if (width / x_max ) > (height / y_max):
-                        
-                        new_x   = x_max
-                        new_y   = math.trunc((float(x_max) / width) * height)
-                        
-                        print 'resize (width / x_max ) > (height / y_max): ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
-                        
-                        with open(inFile, 'r+b') as inFile:
-                            
-                            with Image.open(inFile) as image:
-                                
-                                cover = resizeimage.resize_cover(image, [new_x, new_y])
-                                cover.save(displayFile, image.format)                    
-                
-                    elif (width / x_max ) <= (height / y_max):
-                        
-                        new_x   = math.trunc((float(y_max) / height) * width)
-                        new_y   = y_max
-                        
-                        print '(width / x_max ) <= (height / y_max): ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
-                        
-                        with open(inFile, 'r+b') as inFile:
-                            
-                            with Image.open(inFile) as image:
-                                
-                                cover = resizeimage.resize_cover(image, [new_x, new_y])
-                                cover.save(displayFile, image.format)
-                                
-                    else: # no resize require, just copy file
-                        
-                        shutil.copyfile( inFile, displayFile )
-                        print 'else: no resize require, just copy file'
-                
-                width, height = imagesize.get('./' + displayFolder + '/' + f)
-                print 'displayFolder: ' + f + ', width: ' + str(width) + ', height: ' + str(height)                
-                
-            displayArray    = os.listdir(displayFolder)
-            displayArray.sort()
-            
-            print 'displayArray: ' + str(displayArray)
-            print 'len(displayArray): ' + str(len(displayArray))
-            
-            time.sleep(1) # reduce RPi heat and make print output more human readable for debug
-            
             #
-            # start carousel when resizing is completed
+            # if filenames in inFolder are not equal to filenames in displayFolder
+            #
+            #   delete all files in displayFolder
+            #
+            #   copy resized (if necessary) files to displayFolder
             #
             
-            thread_carouselDisplay = socketio.start_background_task(carouselDisplay)
-            print 'after resizing: thread_carouselDisplay:' + str(thread_carouselDisplay)
+            if cmp(inArray, oldArray) != 0:
+                
+                command = 'rm -f ./' + displayFolder + '/*'
+                os.popen(command)
+                
+                i = 1
+                    
+                for f in inArray:
+                    
+                    if flagLoadImages == 0:
 
-        #
-        # start carousel if it has not already been started
-        #
-        
-        if thread_carouselDisplay == 0:
+                        #
+                        # resize image if necessary
+                        #
+                    
+                        print
+                        print 'resize number: ' + str(i) + ' of ' + str(len(inArray)) + ', file: ' + f
+                        print
+                        
+                        i += 1
+                    
+                        inFile          = './' + inFolder + '/' + f
+                        print 'inFile: ' + inFile
+                        
+                        displayFile     = './' + displayFolder + '/' + f
+                        print 'displayFile: ' + displayFile 
+                        
+                        width, height = imagesize.get(inFile)
+                        print 'inFolder: ' + f + ', width: ' + str(width) + ', height: ' + str(height)
+                        print 'inFolder: ' + f + ', x_max: ' + str(x_max) + ', y_max: ' + str(y_max)
+                        
+                        
+                        if width <= x_max and height <= y_max: # no resize require, just copy file
+                                
+                            shutil.copyfile( inFile, displayFile )
+                            print 'width <= x_max and height <= y_max: no resize require, just copy file'
+                        
+                        elif width > x_max and height <= y_max:
+                            
+                            new_x   = x_max
+                            new_y   = math.trunc((float(x_max) / width) * height)
+                            
+                            print 'resize width > x_max && height <= y_max: ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
+                            
+                            with open(inFile, 'r+b') as inFile:
+                                
+                                with Image.open(inFile) as image:
+                                    
+                                    cover = resizeimage.resize_cover(image, [new_x, new_y])
+                                    cover.save(displayFile, image.format)
+                            
+                        elif width <= x_max and height > y_max:
 
-            thread_carouselDisplay = socketio.start_background_task(carouselDisplay)
-            print 'no resizing: thread_carouselDisplay:' + str(thread_carouselDisplay)            
-        
-        time.sleep(inRefreshSeconds)
+                            new_x   = math.trunc((float(y_max) / height) * height)
+                            new_y   = y_max
+                            
+                            print 'resize width <= x_max && height > y_max: ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
+                            
+                            with open(inFile, 'r+b') as inFile:
+                                
+                                with Image.open(inFile) as image:
+                                    
+                                    cover = resizeimage.resize_cover(image, [new_x, new_y])
+                                    cover.save(displayFile, image.format)
+
+                        elif width > x_max and height > y_max:
+                            
+                            if (width / x_max ) > (height / y_max):
+                                
+                                new_x   = x_max
+                                new_y   = math.trunc((float(x_max) / width) * height)
+                                
+                                print 'resize (width / x_max ) > (height / y_max): ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
+                                
+                                with open(inFile, 'r+b') as inFile:
+                                    
+                                    with Image.open(inFile) as image:
+                                        
+                                        cover = resizeimage.resize_cover(image, [new_x, new_y])
+                                        cover.save(displayFile, image.format)                    
+                        
+                            elif (width / x_max ) <= (height / y_max):
+                                
+                                new_x   = math.trunc((float(y_max) / height) * width)
+                                new_y   = y_max
+                                
+                                print '(width / x_max ) <= (height / y_max): ' + f + ', new_x: ' + str(new_x) + ', new_y: ' + str(new_y)
+                                
+                                with open(inFile, 'r+b') as inFile:
+                                    
+                                    with Image.open(inFile) as image:
+                                        
+                                        cover = resizeimage.resize_cover(image, [new_x, new_y])
+                                        cover.save(displayFile, image.format)
+                                        
+                            else: # no resize require, just copy file
+                                
+                                shutil.copyfile( inFile, displayFile )
+                                print 'else: no resize require, just copy file'
+                        
+                        width, height = imagesize.get('./' + displayFolder + '/' + f)
+                        print 'displayFolder: ' + f + ', width: ' + str(width) + ', height: ' + str(height)                
+                    
+                if flagLoadImages == 0:
+                
+                    displayArray    = os.listdir(displayFolder)
+                    displayArray.sort()
+                    
+                    print 'displayArray: ' + str(displayArray)
+                    print 'len(displayArray): ' + str(len(displayArray))
+                
+                time.sleep(1) # reduce RPi heat and make print output more human readable for debug
+                
+                #
+                # start carousel when resizing is completed
+                #
+                  
+                thread_carouselDisplay = socketio.start_background_task(carouselDisplay)
+                print 'after resizing: thread_carouselDisplay:' + str(thread_carouselDisplay)
+
+            #
+            # start carousel if it has not already been started
+            #
+            
+            if thread_carouselDisplay == 0:
+
+                thread_carouselDisplay = socketio.start_background_task(carouselDisplay)
+                print 'no resizing: thread_carouselDisplay:' + str(thread_carouselDisplay)            
+            
+            time.sleep(inRefreshSeconds)
+            
+        else: # do nothing during image load
+            
+            time.sleep(1)
         
 
 thread_carouselFindFiles = socketio.start_background_task(carouselFindFiles)
 print 'thread_carouselFindFiles:' + str(thread_carouselFindFiles)
-
-
-
-#~ thread_carouselDisplay = socketio.start_background_task(carouselDisplay)
-#~ print 'thread_carouselDisplay:' + str(thread_carouselDisplay)
 
 
 def freqUpdate():
@@ -481,8 +507,8 @@ def newChannel():
                     
     print 'newChannel() newChannel = ' + newChannel
     
-    os.popen("pkill -9 rtl_fm")
-    os.popen("pkill -9 vlc")
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
 
     #
     # cvlc command
@@ -536,8 +562,8 @@ def tuneFM():
     
     print 'tuneFM() newFreq = ' + newFreq
     
-    os.popen("pkill -9 rtl_fm")
-    os.popen("pkill -9 vlc")
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
 
     #
     # SDR rtl_fm command
@@ -574,8 +600,8 @@ def tuneFire():
     if hasattr(sub_cvlc, 'pid'):
         sub_cvlc.kill()
     
-    os.popen("pkill -9 rtl_fm")
-    os.popen("pkill -9 vlc")
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
     
     #~ fe = -252000 # calculated difference
     fe = -249500    # works
@@ -643,8 +669,8 @@ def tuneAir():
     if hasattr(sub_cvlc, 'pid'):
         sub_cvlc.kill()
     
-    os.popen("pkill -9 rtl_fm")
-    os.popen("pkill -9 vlc")
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
     
     #~ fe = -252000    # calculated difference
     fe = -249500    # works
@@ -688,15 +714,88 @@ def stop():
     if hasattr(sub_cvlc, 'pid'):
         sub_cvlc.kill()
     
-    os.popen("sudo pkill -9 rtl_fm")
-    os.popen("pkill -9 vlc")
-    
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
+
+    ts          = datetime.datetime.now().strftime("%A %B %d, %Y %I:%M:%S %p")
+    jsonStr     = '{ "freqNumber" : "' + str(freqNumber)  + '", "freqText" : "' + str(freqText)  + '", "timestamp" : "' +  str(ts) + '" }'
+    socketio.emit('tuneAir', data=jsonStr, broadcast=True)    
+        
     resp = jsonify({"freqNumber"    : freqNumber ,
                     "freqText"      : freqText 
     })
 
     return resp
     
+
+@app.route('/ajaxLoadImages', methods=['GET', 'POST'])
+def LoadImages():
+    
+    global freqText, freqNumber, sub_radio, sub_cvlc, flagLoadImages
+    
+    flagLoadImages = 1 # stop the carousel
+    
+    print 'flagLoadImages = 1 # stop the carousel'
+    
+    freqNumber  = "Load Images"
+    
+    freqText    = "Load Images"
+
+    if hasattr(sub_radio, 'pid'):
+        sub_radio.kill()    
+
+    if hasattr(sub_cvlc, 'pid'):
+        sub_cvlc.kill()
+    
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
+
+    ts          = datetime.datetime.now().strftime("%A %B %d, %Y %I:%M:%S %p")
+    jsonStr     = '{ "freqNumber" : "' + str(freqNumber)  + '", "freqText" : "' + str(freqText)  + '", "timestamp" : "' +  str(ts) + '" }'
+    socketio.emit('tuneAir', data=jsonStr, broadcast=True) 
+
+    resp = jsonify({"freqNumber"    : freqNumber ,
+                    "freqText"      : freqText 
+    })
+
+    return resp
+
+@app.route('/ajaxRestart', methods=['GET', 'POST'])
+def LoadRestart():
+    
+    print 'LoadRestart()' 
+    
+    global freqText, freqNumber, sub_radio, sub_cvlc
+    
+    freqNumber  = "Restart"
+    
+    freqText    = "Restart"
+
+    ts          = datetime.datetime.now().strftime("%A %B %d, %Y %I:%M:%S %p")
+    jsonStr     = '{ "freqNumber" : "' + str(freqNumber)  + '", "freqText" : "' + str(freqText)  + '", "timestamp" : "' +  str(ts) + '" }'
+    socketio.emit('tuneAir', data=jsonStr, broadcast=True) 
+    
+    if hasattr(sub_radio, 'pid'):
+        sub_radio.kill()    
+
+    if hasattr(sub_cvlc, 'pid'):
+        sub_cvlc.kill()
+    
+    os.popen("sudo pkill -9 rtl")
+    os.popen("sudo pkill -9 vlc")
+    
+    time.sleep(3)
+    
+    print 'os.popen("sudo reboot")'   
+    
+    os.popen("sudo reboot")
+
+    resp = jsonify({"freqNumber"    : freqNumber ,
+                    "freqText"      : freqText 
+    })
+
+    return resp
+
 
 @socketio.on('connect')
 def on_connect():

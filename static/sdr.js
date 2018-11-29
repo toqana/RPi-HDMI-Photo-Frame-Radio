@@ -167,8 +167,6 @@ function ajaxStop(){
     
     cl('ajaxStop()');
     
-    if( document.getElementById('video_0') != null ){ videoPlayer.pause(); }
-    
     var xhr = new XMLHttpRequest();
     var url = "/ajaxStop";
     
@@ -181,6 +179,63 @@ function ajaxStop(){
         if(xhr.readyState == 4){
 
             cl('ajaxStop() xhr.readyState == 4');
+            cl(xhr.responseText);
+                        
+            var respJSON = JSON.parse(xhr.responseText);
+            
+            document.getElementById('sockFreq').innerHTML   = respJSON.freqText;
+            
+        }
+        
+    };
+
+}
+
+function ajaxLoadImages(){
+    
+    cl('ajaxLoadImages()');
+    
+    var xhr = new XMLHttpRequest();
+    var url = "/ajaxLoadImages";
+    
+    xhr.open("POST", url, true); // true is for async
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ "newFreq": "LoadImages" }));
+    
+    xhr.onreadystatechange = function() {
+        
+        if(xhr.readyState == 4){
+
+            cl('ajaxLoadImages() xhr.readyState == 4');
+            cl(xhr.responseText);
+                        
+            var respJSON = JSON.parse(xhr.responseText);
+            
+            document.getElementById('sockFreq').innerHTML   = respJSON.freqText;
+            
+        }
+        
+    };
+
+}
+
+
+function ajaxRestart(){
+    
+    cl('ajaxRestart()');
+    
+    var xhr = new XMLHttpRequest();
+    var url = "/ajaxRestart";
+    
+    xhr.open("POST", url, true); // true is for async
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ "newFreq": "Restart" }));
+    
+    xhr.onreadystatechange = function() {
+        
+        if(xhr.readyState == 4){
+
+            cl('ajaxRestart() xhr.readyState == 4');
             cl(xhr.responseText);
                         
             var respJSON = JSON.parse(xhr.responseText);
